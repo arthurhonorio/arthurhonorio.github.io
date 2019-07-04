@@ -45,7 +45,12 @@ function Q4() {
     var c_str = document.getElementById('c').value;
     // Segue aqui seu código
 
-    if (!a_str) {
+    //var aff = a_str&&b_str&&c_str&&0
+
+    if (a_str && b_str && c_str) {
+        console.error('deixe apenas uma caixa vazia')
+    }
+    else if (!a_str) {
         console.log("hipotenusa é " + Math.sqrt(Math.pow(b_str,2) + Math.pow(c_str,2)))
     }
     else if (!b_str) {
@@ -86,10 +91,10 @@ function Q5() {
         var msg = 'magr'
     }
 
-    if (genero = 'Masculino') {
+    if (genero == 'Masculino') {
         console.log(msg + 'o')
     }
-    if (genero = 'Feminino') {
+    if (genero == 'Feminino') {
         console.log(msg + 'a')
     }
 

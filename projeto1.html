@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="cra.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+#divform {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
+
+#divnotas {
+  position: relative;
+  max-width: 100%;
+  vertical-align: top;
+  display: inline-block;
+}
+
+#divhoras {
+  position: relative;
+  max-width: 100%;
+  vertical-align: top;
+  display: inline-block;
+}
+
+#divrep {
+  position: relative;
+  max-width: 100%;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.card-body {
+  text-align: center;
+  font-size: 0.9em;
+}
+
+#botao45 {
+  position: relative;
+  max-width: 100%;
+  display: inline-block;
+}
+
+#intro {
+  border-style: solid;
+  padding: 15px;
+  max-width: 500px;
+  margin: auto;
+}
+
+p {
+  text-align: justify;
+  text-indent: 2em;
+}
+
+.alert  {
+  text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+  
+  <h1 class="display-3" class="container-fluid">
+    <div class="card bg-warning text-white">
+      <div class="card-body">Calculadora de CRA</div>
+    </div>
+  </h1>
+  <div class="alert alert-danger" data-toggle="tooltip" title="Avisamos!">
+    <strong>Cuidado!</strong> O que acontecerá daqui em diante está por sua conta e risco.
+  </div>
+  <div id="intro" class="card-body">
+    <h5>Instruções de uso</h5>
+    <p>Preencha os campos abaixos com seus respectivos valores sempre separados por ; (ponto e vírgula).
+    </p>
+    <p>  Em "Notas" coloque as notas de todas as matérias que você já fez e em "Carga Horária"
+       a quantidade de horas que cada matéria tem.
+    </p>
+    <p>Para o calculo ser feito de maneira correta, as notas e as cargas horárias devem 
+      ser preenchidas com a mesma ordem.
+    </p>
+    <p>
+      Caso tenho tido alguma reprovação por falta, preencha o último campo com a carga horária dessa matéria.
+    </p>
+    <p>Com essa calculadora você pode fazer simulações para ver como seu CRA ficaria 
+      dependendo de suas futuras notas.</p>
+  </div>
+  <br>
+  <div id="divform">
+    <form>
+      <div class="form-group" id="divnotas">
+        <label for="notas">Notas:</label>
+        <!-- (Digite as notas em sequência, separadas por vírgula) -->
+        <input type="text" class="form-control" id="notas" name="notas">
+      </div>
+      <div class="form-group" id="divhoras">
+        <label for="horas">Carga Horária:</label>
+        <!-- (Digite a quantidade de horas referente a cada curso, inclusive reprovados,
+        separadas por vírgula) -->
+        <input type="text" class="form-control" id="horas" name="horas">
+      </div>
+      <br>
+      <div class="form-group" id="divrep">
+        <label for="horasrep">Carga horária das matérias com reprovação por falta:</label>
+        <!-- (Digite a quantidade de horas referentes a cada curso reprovado, separadas por vírgula) -->
+        <input type="text" class="form-control" id="horasrep" name="horasrep">
+      </div>
+      <br>
+      <button type="button" onclick="cra()" class="btn btn-outline-danger" id="">Enviar</button>
+    </form>
+    <br>
+    <p id="resposta"> </p>
+    <br>
+    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">
+        Clique caso seu CRA seja menor que 45!
+      </button>
+  </div><br>
+
+
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Você é mais que uma nota!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          Esse valor é só um valor. Não fique triste. Existem múltiplas inteligências. Encontre a sua, o que faz teu
+          coração vibrar, e siga isso até o fim.
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="toast" data-autohide="false">
+    <div class="toast-header">
+      <strong class="mr-auto text-primary">Emergências</strong>
+      <small class="text-muted">1 min atrás</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+    </div>
+    <div class="toast-body">
+      Caso necessitar de ajuda em emergência, clique no botão "Ajuda".
+    </div>
+  </div>
+
+  <footer class="blockquote-footer">Made by Arthur, Pedro & Thiago<i class="fas fa-coffee"></i></footer>
+  <div class="spinner-grow text-danger"></div>
+
+</body>
+
+</html>

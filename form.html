@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h2>Programação Script - Labs Web</h2>
+
+    <form>
+        <p> Insira seu nome:
+            <input id="nome" name="nome" type="text">
+        </p>
+        <p>Insira sua data de nascimento:
+            <input id="nascimento" name="nascimento" type="date">
+        </p>
+        <p>E-mail:
+            <input id="email" name="email" type="email">
+        </p>
+        <p>Foto:
+            <input id="foto" name="foto" type="file">
+        </p>
+        <p>Gênero:
+            <select id="gênero" name="gênero">
+                <option value="homem">Homem</option>
+                <option value="mulher">Mulher</option>
+                <option value="outros">Não binário</option>
+            </select>
+        </p>
+        <p>Tipo Sanguíneo <br>
+            <label><input type="radio" name="tiposangue">O</label>
+            <label><input type="radio" name="tiposangue">A</label>
+            <label><input type="radio" name="tiposangue">B</label>
+            <label><input type="radio" name="tiposangue">AB</label>
+            <br>
+        </p>
+        <p>Fator RH <br>
+            <label><input type="radio" name="fatorrh">+</label>
+            <label><input type="radio" name="fatorrh">-</label>
+            <br>
+        </p>
+        <!--radio = marcar uma opção
+            checkbox = marcar uma ou mais opções-->
+            <p>Informações importantes (marque para "sim"): <br> <br>
+                <label><input type="checkbox" name="doenca">Doenças transmissíveis por transfusão sanguínea</label> <br>
+                <label><input type="checkbox" name="massa">Peso inferior a 50kg</label> <br>
+                <label><input type="checkbox" name="resfriado">Resfriado na última semana</label> <br>
+                <label><input type="checkbox" name="gravidez">Gravidez ou parto recente</label><br>
+                <label><input type="checkbox" name="bebe">Amamentação nos últimos 12 meses</label><br>
+                <label><input type="checkbox" name="alcool">Ingestão de bebidas alcóolicas nas últimas 12 horas</label><br>
+                <label><input type="checkbox" name="make">Tatuagem/maquiagem definitiva nos últimos 12 meses</label><br>
+                <label><input type="checkbox" name="risco">Situações de risco de contração de DST's</label><br>
+                <label><input type="checkbox" name="endo">Procedimentos endoscópicos nos últimos 6 meses</label><br>
+                <label><input type="checkbox" name="dente">Extração dentária nos últimos 7 dias</label><br>
+                <label><input type="checkbox" name="dente2">Situação odontológica com anestesia geral nas últimas 4 semanas</label><br>
+                <label><input type="checkbox" name="acupuntura">Acupuntura (24 horas a 12 meses, dependendo da condição do material)</label><br>
+                <label><input type="checkbox" name="vacina">Vacina contra gripe nas últimas 48 horas </label><br>
+            </p>
+        <p>Biografia:<br>
+            <textarea name="biografia" rows=5 cols="20">
+[Digite aqui]
+            </textarea>
+        </p>
+        <p>
+            <button type="button" onclick="alert('Labaxúrias Decantas')">Não Clique</button>
+        </p>
+    </form>
+</body>
+
+</html>
