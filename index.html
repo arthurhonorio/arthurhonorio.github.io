@@ -1,1 +1,63 @@
-<h1>Em construção</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arthur Honório — Engenharia de Software & Casos de Uso</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-emerald-500/30">
+  <main class="max-w-3xl mx-auto px-6 py-16">
+    
+    <!-- Cabeçalho direto -->
+    <header class="border-b border-zinc-800 pb-10">
+      <p class="text-sm font-mono text-emerald-400">arthurhonorio.github.io</p>
+      <h1 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-white">
+        Arthur Honório
+      </h1>
+      <p class="mt-4 text-zinc-400 leading-relaxed">
+        Desenvolvimento back-end, automação e sistemas embarcados. Aqui documento problemas reais, decisões de arquitetura e soluções em produção.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-4 text-sm font-medium">
+        <a href="https://github.com/arthurhonorio" target="_blank" class="text-zinc-300 hover:text-emerald-400 transition">GitHub ↗</a>
+        <a href="#casos" class="text-zinc-300 hover:text-emerald-400 transition">Casos de Uso ↓</a>
+        <a href="mailto:seu-email@exemplo.com" class="text-zinc-300 hover:text-emerald-400 transition">Contato</a>
+      </div>
+    </header>
+
+    <!-- Lista de Casos de Uso -->
+    <section id="casos" class="mt-12">
+      <h2 class="text-xs font-mono uppercase tracking-wider text-zinc-500">
+        Casos de Uso Documentados
+      </h2>
+
+      <div class="mt-6 space-y-6">
+        <!-- Card de exemplo 1 -->
+        <article class="group rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-6 hover:border-zinc-700 transition">
+          <div class="flex items-center justify-between text-xs font-mono text-zinc-500">
+            <span>AUTOMAÇÃO & PYTHON</span>
+            <span>2026</span>
+          </div>
+          <h3 class="mt-2 text-xl font-semibold text-white group-hover:text-emerald-400 transition">
+            <a href="casos/template-caso.html">
+              Geração em lote de certificados com validação de dados
+            </a>
+          </h3>
+          <p class="mt-2 text-sm text-zinc-400 leading-relaxed">
+            Como eliminei o preenchimento manual de dezenas de documentos a partir de planilhas, aplicando filtragem de registros inválidos e datas padronizadas.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs font-mono text-zinc-300">
+            <span class="rounded bg-zinc-800 px-2.5 py-1">Python</span>
+            <span class="rounded bg-zinc-800 px-2.5 py-1">Automação PDF</span>
+            <span class="rounded bg-zinc-800 px-2.5 py-1">ETL</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="mt-16 border-t border-zinc-800 pt-8 text-xs text-zinc-500">
+      Construído com HTML estático e hospedado no GitHub Pages.
+    </footer>
+  </main>
+</body>
+</html>
