@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arthur Honório Brandão — Engenharia de Software & Casos de Uso</title>
+  <title>Arthur Honório — Engenharia de Software & Casos de Uso</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-emerald-500/30">
   <main class="max-w-3xl mx-auto px-6 py-16">
     
-    <!-- Cabeçalho direto -->
+    <!-- Cabeçalho -->
     <header class="border-b border-zinc-800 pb-10">
       <p class="text-sm font-mono text-emerald-400">arthurhonorio.github.io</p>
       <h1 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-white">
-        Arthur Honório Brandão
+        Arthur Honório
       </h1>
       <p class="mt-4 text-zinc-400 leading-relaxed">
         Desenvolvimento back-end, automação e sistemas embarcados. Aqui documento problemas reais, decisões de arquitetura e soluções em produção.
       </p>
-      <div class="mt-6 flex flex-wrap gap-4 text-sm font-medium">
+      <div class="mt-6 flex flex-wrap gap-5 text-sm font-medium">
         <a href="https://github.com/arthurhonorio" target="_blank" class="text-zinc-300 hover:text-emerald-400 transition">GitHub ↗</a>
         <a href="#casos" class="text-zinc-300 hover:text-emerald-400 transition">Casos de Uso ↓</a>
-        <a href="mailto:seu-email@exemplo.com" class="text-zinc-300 hover:text-emerald-400 transition">Contato</a>
       </div>
     </header>
 
@@ -32,31 +31,36 @@
       </h2>
 
       <div class="mt-6 space-y-6">
-        <!-- Card de exemplo 1 -->
-        <article class="group rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-6 hover:border-zinc-700 transition">
+        <!-- Caso 1: Gerador de Certificados -->
+        <article class="group rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-6 hover:border-emerald-500/40 transition">
           <div class="flex items-center justify-between text-xs font-mono text-zinc-500">
             <span>AUTOMAÇÃO & PYTHON</span>
             <span>2026</span>
           </div>
           <h3 class="mt-2 text-xl font-semibold text-white group-hover:text-emerald-400 transition">
-            <a href="casos/template-caso.html">
-              Geração em lote de certificados com validação de dados
+            <a href="casos/gerador-certificados.html">
+              Geração em lote de certificados com sanitização de planilhas
             </a>
           </h3>
           <p class="mt-2 text-sm text-zinc-400 leading-relaxed">
-            Como eliminei o preenchimento manual de dezenas de documentos a partir de planilhas, aplicando filtragem de registros inválidos e datas padronizadas.
+            Pipeline em Python com Pandas e docxtpl para gerar documentos personalizados a partir de planilhas Excel, preservando zeros à esquerda em CPFs e filtrando registros incompletos.
           </p>
-          <div class="mt-4 flex flex-wrap gap-2 text-xs font-mono text-zinc-300">
-            <span class="rounded bg-zinc-800 px-2.5 py-1">Python</span>
-            <span class="rounded bg-zinc-800 px-2.5 py-1">Automação PDF</span>
-            <span class="rounded bg-zinc-800 px-2.5 py-1">ETL</span>
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex flex-wrap gap-2 text-xs font-mono text-zinc-300">
+              <span class="rounded bg-zinc-800 px-2.5 py-1">Python 3</span>
+              <span class="rounded bg-zinc-800 px-2.5 py-1">Pandas</span>
+              <span class="rounded bg-zinc-800 px-2.5 py-1">docxtpl</span>
+            </div>
+            <a href="casos/gerador-certificados.html" class="text-xs font-mono text-emerald-400 group-hover:translate-x-0.5 transition">
+              Ler caso →
+            </a>
           </div>
         </article>
       </div>
     </section>
 
     <footer class="mt-16 border-t border-zinc-800 pt-8 text-xs text-zinc-500">
-      Construído com HTML estático e hospedado no GitHub Pages.
+      Hospedado no GitHub Pages.
     </footer>
   </main>
 </body>
