@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador Automático de Certificados — Caso de Uso | Arthur Honório</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-emerald-500/30">
+  <main class="max-w-3xl mx-auto px-6 py-16">
+
+    <!-- Navegação -->
+    <nav class="mb-10">
+      <a href="../index.html" class="text-sm font-mono text-zinc-400 hover:text-emerald-400 transition">
+        ← Voltar para início
+      </a>
+    </nav>
+
+    <!-- Cabeçalho do Caso de Uso -->
+    <header class="border-b border-zinc-800 pb-8">
+      <p class="text-xs font-mono uppercase tracking-wider text-emerald-400">
+        Estudo de Caso • Automação & Engenharia de Dados
+      </p>
+      <h1 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-white">
+        Geração em lote de certificados com sanitização de planilhas
+      </h1>
+      <p class="mt-4 text-zinc-400 leading-relaxed">
+        Pipeline automatizado em Python para transformar registros de participantes em arquivos <code class="text-zinc-200">.docx</code> personalizados, eliminando preenchimento manual e erros de tipagem de dados.
+      </p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-4 text-sm font-mono">
+        <a href="https://github.com/arthurhonorio/gerador-de-certificado" target="_blank" class="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3.5 py-1.5 text-emerald-400 hover:bg-emerald-500/20 transition">
+          Código-fonte no GitHub ↗
+        </a>
+        <div class="flex flex-wrap gap-2 text-xs text-zinc-400">
+          <span class="rounded bg-zinc-900 border border-zinc-800 px-2.5 py-1">Python 3</span>
+          <span class="rounded bg-zinc-900 border border-zinc-800 px-2.5 py-1">Pandas</span>
+          <span class="rounded bg-zinc-900 border border-zinc-800 px-2.5 py-1">OpenPyXL</span>
+          <span class="rounded bg-zinc-900 border border-zinc-800 px-2.5 py-1">docxtpl</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Corpo Técnico -->
+    <article class="mt-10 space-y-12 text-zinc-300 leading-relaxed">
+
+      <!-- 1. O Problema -->
+      <section>
+        <h2 class="text-xl font-semibold text-white">1. O Problema</h2>
+        <p class="mt-3 text-zinc-400">
+          Emitir certificados individuais para eventos e ações comunitárias exigia copiar manualmente nomes e CPFs de uma planilha Excel para um documento Word, atualizar datas e salvar cada arquivo separadamente. Além de consumir horas de trabalho repetitivo, o processo manual estava sujeito a erros de digitação, inconsistência na data de emissão e emissão de documentos para cadastros incompletos.
+        </p>
+      </section>
+
+      <!-- 2. Arquitetura e Fluxo -->
+      <section>
+        <h2 class="text-xl font-semibold text-white">2. Arquitetura e Fluxo de Execução</h2>
+        <p class="mt-3 text-zinc-400">
+          A solução foi desenhada como um script CLI enxuto e determinístico, separando completamente os <strong>dados de entrada</strong> (<code class="text-zinc-200">.xlsx</code>), o <strong>layout visual</strong> (<code class="text-zinc-200">.docx</code>) e a <strong>lógica de processamento</strong>:
+        </p>
+
+        <div class="mt-5 rounded-xl border border-zinc-800 bg-zinc-900/60 p-5 font-mono text-xs sm:text-sm text-zinc-300 overflow-x-auto">
+          <pre>Planilha (.xlsx) ──▶ Pandas (dtype=str + limpeza) ──▶ Validação (Nome/CPF)
+                                                               │
+Certificados (.docx) ◀── Renderização Jinja2 (docxtpl) ◀───────┘</pre>
+        </div>
+      </section>
+
+      <!-- 3. Decisões Técnicas e Edge Cases -->
+      <section>
+        <h2 class="text-xl font-semibold text-white">3. Decisões Técnicas e Casos de Borda</h2>
+        <ul class="mt-4 space-y-4 text-zinc-400">
+          <li class="rounded-lg border border-zinc-800/80 bg-zinc-900/30 p-4">
+            <strong class="text-zinc-100 block">Preservação de zeros à esquerda no CPF (<code class="text-emerald-400">dtype=str</code>)</strong>
+            <span class="mt-1 block text-sm">
+              Por padrão, leitores de Excel inferem colunas numéricas como inteiros ou floats, amputando zeros iniciais de CPFs (ex.: <code class="text-zinc-300">012...</code> vira <code class="text-zinc-300">12...</code>). Forçar <code class="text-zinc-300">dtype=str</code> na leitura com Pandas garante integridade documental sem precisar reconstruir máscaras.
+            </span>
+          </li>
+
+          <li class="rounded-lg border border-zinc-800/80 bg-zinc-900/30 p-4">
+            <strong class="text-zinc-100 block">Template engine com <code class="text-emerald-400">docxtpl</code> em vez de edição crua de XML</strong>
+            <span class="mt-1 block text-sm">
+              Alterar textos diretamente via <code class="text-zinc-300">python-docx</code> costuma quebrar estilos quando o Word divide uma palavra em múltiplos <em>runs</em> XML. O <code class="text-zinc-300">docxtpl</code> aplica sintaxe Jinja2 (<code class="text-zinc-300">{{ nome }}</code>, <code class="text-zinc-300">{{ cpf }}</code>, <code class="text-zinc-300">{{ data_emissao }}</code>) mantendo 100% da tipografia, margens e identidade visual do modelo original.
+            </span>
+          </li>
+
+          <li class="rounded-lg border border-zinc-800/80 bg-zinc-900/30 p-4">
+            <strong class="text-zinc-100 block">Sanitização defensiva de linhas e sistema de arquivos</strong>
+            <span class="mt-1 block text-sm">
+              O pipeline normaliza cabeçalhos (<code class="text-zinc-300">str.strip()</code>), descarta automaticamente linhas vazias ou sem CPF válido (evitando gerar certificados corrompidos com <code class="text-zinc-300">"nan"</code>) e remove caracteres proibidos (<code class="text-zinc-300">/</code>) antes de gravar o arquivo final no disco com <code class="text-zinc-300">pathlib</code>.
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 4. Trecho-Chave do Código -->
+      <section>
+        <h2 class="text-xl font-semibold text-white">4. Implementação Principal</h2>
+        <pre class="mt-4 rounded-xl border border-zinc-800 bg-zinc-900 p-5 text-xs sm:text-sm font-mono text-zinc-300 overflow-x-auto leading-relaxed"><code>df = pd.read_excel(caminho_excel, dtype=str)
+df.columns = df.columns.str.strip()
+data_atual = datetime.now().strftime("%d/%m/%Y")
+
+for _, linha in df.iterrows():
+    nome = str(linha["Nome"]).strip()
+    cpf = str(linha["CPF"]).strip()
+
+    if nome == "nan" or not nome or cpf in ("nan", "", "None", "none"):
+        continue
+
+    doc = DocxTemplate(caminho_modelo)
+    doc.render({"nome": nome, "cpf": cpf, "data_emissao": data_atual})
+
+    nome_arquivo = f"Certificado - {nome}.docx".replace("/", "-")
+    doc.save(pasta_saida / nome_arquivo)</code></pre>
+      </section>
+
+      <!-- 5. Resultado e Evoluções -->
+      <section>
+        <h2 class="text-xl font-semibold text-white">5. Resultado e Próximos Passos</h2>
+        <p class="mt-3 text-zinc-400">
+          O processo de emissão em lote caiu de horas de edição manual para poucos segundos de execução, com rastreabilidade no terminal sobre registros ignorados e saída padronizada em pasta dedicada.
+        </p>
+        <p class="mt-3 text-zinc-400">
+          <strong class="text-zinc-200">Evoluções planejadas:</strong> conversão automática para PDF em lote (via LibreOffice headless) e passagem de caminhos via argumentos CLI (<code class="text-zinc-300">argparse</code>) para reutilizar o script em diferentes eventos sem alterar o código.
+        </p>
+      </section>
+
+    </article>
+
+    <footer class="mt-16 border-t border-zinc-800 pt-8 flex items-center justify-between text-xs text-zinc-500">
+      <a href="../index.html" class="hover:text-zinc-300 transition">← Todos os casos de uso</a>
+      <span>Arthur Honório</span>
+    </footer>
+  </main>
+</body>
+</html>
